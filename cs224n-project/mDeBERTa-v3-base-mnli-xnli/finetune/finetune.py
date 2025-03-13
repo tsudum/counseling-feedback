@@ -5,7 +5,7 @@ from datasets import Dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer, EarlyStoppingCallback
 
 # Define skill categories
-SKILL_CATEGORIES = ["Empathy", "Reflection", "Validation", "Suggestions", "Questions", "Professionalism", "Self-disclosure", "Structure"]
+SKILL_CATEGORIES = ["Empathy", "Validation", "Suggestions", "Questions", "Professionalism", "Self-disclosure", "Structure"]
 
 def load_and_format_data(file_path):
     with open(file_path, "r", encoding="utf-8") as f:

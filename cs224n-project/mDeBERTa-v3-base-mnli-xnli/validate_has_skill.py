@@ -96,13 +96,13 @@ def validate_model(dataset, percentile=75, label_smoothing=0.1):
             if is_present:
                 detected_skills.add(skill)
 
-            # Track per-skill metrics with label smoothing
+            # track per-skill metrics with label smoothing
             if skill in goodareas and is_present:
                 per_skill_metrics[skill]["TP"] += 1  
             elif skill in goodareas and not is_present:
-                per_skill_metrics[skill]["FN"] += 1 - label_smoothing  # Reduce FN penalty
+                per_skill_metrics[skill]["FN"] += 1 - label_smoothing  
             elif skill in badareas and is_present:
-                per_skill_metrics[skill]["FP"] += 1 - label_smoothing  # Reduce FP penalty
+                per_skill_metrics[skill]["FP"] += 1 - label_smoothing  
 
         print(f"TEXT: {text[:50]}...")
         print(f"Skill Predictions: {skill_scores}\n")
@@ -140,7 +140,6 @@ if __name__ == "__main__":
     # Run validation with the fine-tuned model
     results = validate_model(dataset=formatted_dataset, percentile=75)
 
-    # Save results
     output_file = "skill_validation_results.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
